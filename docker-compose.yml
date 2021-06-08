@@ -10,4 +10,11 @@ services:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=admin2021
       - POSTGRES_DB=home_resource_planning
-
+  app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: home_resource_planning
+      image: home_resource_planning
+      ports:
+        - 80:80
