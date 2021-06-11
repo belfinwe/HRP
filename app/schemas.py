@@ -5,7 +5,6 @@ from datetime import date
 from pydantic import BaseModel
 
 
-"""
 class ItemBase(BaseModel):
     title: str
     description: Optional[str] = None
@@ -22,7 +21,6 @@ class Item(ItemBase):
     class Config:
         orm_mode = True
 
-"""
 
 
 # users
