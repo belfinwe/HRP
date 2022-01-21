@@ -1,9 +1,9 @@
 version: "3.8"
 services:
   db:
-    image: "postgres:12"
+    image: "postgres:13"
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     environment:
@@ -14,7 +14,7 @@ services:
     image: "hrp_api"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app/Dockerfile
     container_name: app
     ports:
       - 8080:80
