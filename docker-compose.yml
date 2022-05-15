@@ -1,7 +1,7 @@
-version: "3.8"
+version: "3"
 services:
   db:
-    image: "postgres:13"
+    image: "postgres:14"
     ports:
       - "5433:5432"
     volumes:
@@ -10,6 +10,8 @@ services:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=admin2021
       - POSTGRES_DB=home_resource_planning
+    restart: always
+
   api:
     image: "hrp_api"
     build:
@@ -18,3 +20,5 @@ services:
     container_name: app
     ports:
       - 8080:80
+    depends_on:
+      - db

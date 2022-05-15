@@ -126,3 +126,11 @@ class MovieRead(MovieBase):
 
 class MovieUpdate(MovieBase):
     receipt: int
+
+
+class SwearJarDebt(BaseModel):
+    amount: int
+
+
+class SwearJarDebtRead(SwearJarDebt):
+    person: int

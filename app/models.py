@@ -13,6 +13,10 @@ class User(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
 
+    swear_debt = relationship("SwearJarDebt", backpopulates="parent", uselist=False)
+
+
+
 
 class Location(Base):
     """Keeps the full path of stored files, and the folder name they are in."""
@@ -117,4 +121,13 @@ class Bill(Base):
     payed = Column(Boolean, default=False)  # If registered when the bill arrive, and before it has been payed.
     date_payed = Column(Date, default=None)  # Use trigger to fill in?
 
-'''
+
+class SwearJarDebt(Base):
+    """Stores debt to the swear jar."""
+    __tablename__ = "swearjardebt"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    amount = Column(Integer)
+    person = Column(Integer, ForeignKey("user.id"))
+    parent = relationship("User", backpopulates="swear_debt")
+
