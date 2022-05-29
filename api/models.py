@@ -13,11 +13,21 @@ class User(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
 
-    swear_debt = relationship("SwearJarDebt", backpopulates="parent", uselist=False)
+    swear_debt = relationship("SwearJarDebt", backpopulates="parent", uselist=False)  # One-to-many relationship
+
+
+class SwearJarDebt(Base):
+    """Stores debt to the swear jar."""
+    __tablename__ = "swearjardebt"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    amount = Column(Integer)
+    person = Column(Integer, ForeignKey("user.id"))
+    parent = relationship("User", backpopulates="swear_debt")
 
 
 
-
+'''
 class Location(Base):
     """Keeps the full path of stored files, and the folder name they are in."""
     __tablename__ = "location"
@@ -74,7 +84,6 @@ class Movie(Base):
     # wishlist_row_movie = relationship("Wishlist", backpopulates="movie")
 
 
-'''
 class Wishlist(Base):
     """Stuff you wish for"""
     __tablename__ = "wishlist"
@@ -121,13 +130,4 @@ class Bill(Base):
     payed = Column(Boolean, default=False)  # If registered when the bill arrive, and before it has been payed.
     date_payed = Column(Date, default=None)  # Use trigger to fill in?
 
-
-class SwearJarDebt(Base):
-    """Stores debt to the swear jar."""
-    __tablename__ = "swearjardebt"
-
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    amount = Column(Integer)
-    person = Column(Integer, ForeignKey("user.id"))
-    parent = relationship("User", backpopulates="swear_debt")
-
+'''

@@ -40,6 +40,15 @@ class User(UserBase):
         orm_mode = True
 
 
+
+class SwearJarDebt(BaseModel):
+    amount: int
+
+
+class SwearJarDebtRead(SwearJarDebt):
+    person: int
+
+
 """
 # bill table
 class BillBase(BaseModel):
@@ -62,7 +71,6 @@ class BillRead(BillBase):
     id: int
     payed: bool
     date_payed: date
-"""
 
 
 # receipt table
@@ -128,9 +136,4 @@ class MovieUpdate(MovieBase):
     receipt: int
 
 
-class SwearJarDebt(BaseModel):
-    amount: int
-
-
-class SwearJarDebtRead(SwearJarDebt):
-    person: int
+"""
